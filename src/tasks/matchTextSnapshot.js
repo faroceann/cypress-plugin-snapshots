@@ -7,7 +7,6 @@ const {
   createDiff,
   formatDiff,
   getSnapshot,
-  subjectToSnapshot,
   updateSnapshot,
 } = require('../utils/tasks/textSnapshots');
 const getSnapshotFilename = require('../utils/text/getSnapshotFilename');
@@ -28,7 +27,7 @@ function matchTextSnapshot({
   const snapshotFile = getSnapshotFilename(testFile);
   const expectedRaw = getSnapshot(snapshotFile, snapshotTitle, dataType);
   let expected = applyReplace(expectedRaw, config.replace);
-  const actual = keepKeysFromExpected(subjectToSnapshot(subject, dataType, config), expected, config);
+  const actual = keepKeysFromExpected(subject, expected, config);
 
   const exists = expected !== false;
 
@@ -58,7 +57,7 @@ function matchTextSnapshot({
     snapshotFile,
     snapshotTitle,
     subject,
-    updated,
+    updated
   };
 
   return result;
