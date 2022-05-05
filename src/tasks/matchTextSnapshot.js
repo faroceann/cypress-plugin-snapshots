@@ -8,6 +8,7 @@ const {
   formatDiff,
   getSnapshot,
   updateSnapshot,
+  subjectToSnapshot,
 } = require('../utils/tasks/textSnapshots');
 const getSnapshotFilename = require('../utils/text/getSnapshotFilename');
 const keepKeysFromExpected = require('../utils/text/keepKeysFromExpected');
@@ -38,7 +39,7 @@ function matchTextSnapshot({
   let updated = false;
 
   if ((config.updateSnapshots && !passed) || expected === false) {
-    updateSnapshot(snapshotFile, snapshotTitle, actual, dataType);
+    updateSnapshot(snapshotFile, snapshotTitle, subjectToSnapshot(subject, dataType, config), dataType);
     updated = true;
   }
 
